@@ -35,8 +35,11 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
+import CreateUser from "../../pages/user";
+import { borderBottom } from "@mui/system";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -134,159 +137,267 @@ export default function SDrawer() {
     console.log(e.target);
   };
 
-  let listItems = [
-    {
-      text: "User",
-      childeren: [
-        {
-          childText: "Create Users",
-        },
-      ],
-    },
-  ];
-
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar
-          sx={{
-            color: " #222b45",
-            boxShadow: "0 0.5rem 1rem 0 rgb(44 51 73 / 10%)",
-            height: " 4.7rem",
-            backgroundColor: " #fff",
-            padding: "1.25rem",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawer}
-              edge="start"
-              sx={{
-                paddingRight: "1.25rem",
-                borderRight: "1px solid #edf1f7",
-                borderRadius: "0px",
-                height: "20px",
-                marginRight: "1.25rem",
-              }}
-            >
+    <Router>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar
+            sx={{
+              color: " #222b45",
+              boxShadow: "0 0.5rem 1rem 0 rgb(44 51 73 / 10%)",
+              height: " 4.7rem",
+              backgroundColor: " #fff",
+              padding: "1.25rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawer}
+                edge="start"
+                sx={{
+                  paddingRight: "1.25rem",
+                  borderRight: "1px solid #edf1f7",
+                  borderRadius: "0px",
+                  height: "20px",
+                  marginRight: "1.25rem",
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  class="eva eva-menu-2-outline"
+                  fill="#8f9bb3"
+                >
+                  <g data-name="Layer 2">
+                    <g data-name="menu-2">
+                      <rect
+                        width="24px"
+                        height="24px"
+                        transform="rotate(180 12 12)"
+                        opacity="0"
+                      ></rect>
+                      <circle cx="4" cy="12" r="1"></circle>
+                      <rect
+                        x="7"
+                        y="11"
+                        width="14"
+                        height="2"
+                        rx=".94"
+                        ry=".94"
+                      ></rect>
+                      <rect
+                        x="3"
+                        y="16"
+                        width="18"
+                        height="2"
+                        rx=".94"
+                        ry=".94"
+                      ></rect>
+                      <rect
+                        x="3"
+                        y="6"
+                        width="18"
+                        height="2"
+                        rx=".94"
+                        ry=".94"
+                      ></rect>
+                    </g>
+                  </g>
+                </svg>
+              </IconButton>
+
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{ fontSize: "28px", paddingRight: "1.25rem" }}
+                component="div"
+              >
+                CourierOne
+              </Typography>
+              <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
+                <Select
+                  sx={{ width: 96, height: "40px" }}
+                  value={color}
+                  onChange={handleChange}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                  defaultValue={Light}
+                >
+                  <MenuItem value={"Light"}>Light</MenuItem>
+                  <MenuItem value={"Dark"}>Dark</MenuItem>
+                  <MenuItem value={"Cosmic"}>Cosmic</MenuItem>
+                  <MenuItem value={"Corporate"}>Corporate</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div style={{ paddingRight: "1.25rem" }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24px"
-                height="24px"
+                width="30"
+                height="30"
                 viewBox="0 0 24 24"
-                class="eva eva-menu-2-outline"
+                class="eva eva-power-outline"
                 fill="#8f9bb3"
               >
                 <g data-name="Layer 2">
-                  <g data-name="menu-2">
-                    <rect
-                      width="24px"
-                      height="24px"
-                      transform="rotate(180 12 12)"
-                      opacity="0"
-                    ></rect>
-                    <circle cx="4" cy="12" r="1"></circle>
-                    <rect
-                      x="7"
-                      y="11"
-                      width="14"
-                      height="2"
-                      rx=".94"
-                      ry=".94"
-                    ></rect>
-                    <rect
-                      x="3"
-                      y="16"
-                      width="18"
-                      height="2"
-                      rx=".94"
-                      ry=".94"
-                    ></rect>
-                    <rect
-                      x="3"
-                      y="6"
-                      width="18"
-                      height="2"
-                      rx=".94"
-                      ry=".94"
-                    ></rect>
+                  <g data-name="power">
+                    <rect width="24" height="24" opacity="0"></rect>
+                    <path d="M12 13a1 1 0 0 0 1-1V2a1 1 0 0 0-2 0v10a1 1 0 0 0 1 1z"></path>
+                    <path d="M16.59 3.11a1 1 0 0 0-.92 1.78 8 8 0 1 1-7.34 0 1 1 0 1 0-.92-1.78 10 10 0 1 0 9.18 0z"></path>
                   </g>
                 </g>
               </svg>
-            </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader></DrawerHeader>
 
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{ fontSize: "28px", paddingRight: "1.25rem" }}
-              component="div"
-            >
-              CourierOne
-            </Typography>
-            <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
-              <Select
-                sx={{ width: 96, height: "40px" }}
-                value={color}
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-                defaultValue={Light}
-              >
-                <MenuItem value={"Light"}>Light</MenuItem>
-                <MenuItem value={"Dark"}>Dark</MenuItem>
-                <MenuItem value={"Cosmic"}>Cosmic</MenuItem>
-                <MenuItem value={"Corporate"}>Corporate</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div style={{ paddingRight: "1.25rem" }}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              viewBox="0 0 24 24"
-              class="eva eva-power-outline"
-              fill="#8f9bb3"
-            >
-              <g data-name="Layer 2">
-                <g data-name="power">
-                  <rect width="24" height="24" opacity="0"></rect>
-                  <path d="M12 13a1 1 0 0 0 1-1V2a1 1 0 0 0-2 0v10a1 1 0 0 0 1 1z"></path>
-                  <path d="M16.59 3.11a1 1 0 0 0-.92 1.78 8 8 0 1 1-7.34 0 1 1 0 1 0-.92-1.78 10 10 0 1 0 9.18 0z"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader></DrawerHeader>
-
-        <List
-          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-        >
-          <Router>
+          <List
+            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+          >
             <ListItemButton>
               <ListItemIcon>
-                <SendIcon />
+                <DashboardIcon />
               </ListItemIcon>
-              <Link to="">
+              <Link to="/" className="links">
                 <ListItemText primary="Dashboard" />
               </Link>
             </ListItemButton>
-            <ListItemButton>
+            <Divider />
+            {/* <ListItemButton>
+              <ListItemIcon>
+                <PersonOutlineIcon />
+              </ListItemIcon>
+              <Link to="/" className="links">
+                {" "}
+                <ListItemText primary="Users" />
+              </Link>
+            </ListItemButton> */}
+            <Divider />
+            <ListItemButton onClick={handleClick}>
               <ListItemIcon>
                 <PersonOutlineIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={nestedOpen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <Link to="/user/add" className="links">
+                  <ListItemButton sx={{ pl: 7 }}>
+                    <ListItemText primary="Create User" />
+                  </ListItemButton>
+                </Link>
+                <ListItemButton sx={{ pl: 7 }}>
+                  <ListItemText primary="View All" />
+                </ListItemButton>
+              </List>
+            </Collapse>
+            <Divider />
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Categories" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Banners" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Coupons" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Delivery Modes" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Delivery Profile" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Vendors" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Orders" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Transactions" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Faqs" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Support" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Divider />
+
+            <ListItemButton>
+              <ListItemIcon>
+                <MenuIcon />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+              {nestedOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             {/* <ListItemButton onClick={handleClick}>
               <ListItemIcon>
@@ -302,9 +413,8 @@ export default function SDrawer() {
                 </ListItemButton>
               </List>
             </Collapse> */}
-          </Router>
-        </List>
-        {/* <List>
+          </List>
+          {/* <List>
           {[
             "Dashboard",
             "User",
@@ -460,189 +570,206 @@ export default function SDrawer() {
             </ListItem>
           ))}
         </List> */}
-      </Drawer>
-      {/* Changes Made here */}
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          padding: " 2.25rem 2.25rem 0.75rem ",
-        }}
-      >
-        <DrawerHeader />
+        </Drawer>
+        {/* Changes Made here */}
+        <Switch>
+          <Route exact path="/">
+            <Box
+              component="main"
+              sx={{
+                flexGrow: 1,
+                padding: " 2.25rem 2.25rem 0.75rem ",
+              }}
+            >
+              <DrawerHeader />
 
-        <div className="activeorder">
-          <div className="header">Active orders</div>
-          <Map />
-        </div>
-        <div className="orders">
-          <div className="header">ORDERS</div>
-          <div className="month">
-            <div>
-              <div className="info"> Total </div>
-              <div className="text"> 6</div>
-            </div>
-            <div>
-              <div className="info"> Last Month </div>
-              <div className="text"> 6</div>
-            </div>
-            <div>
-              <div className="info"> Last Week </div>
-              <div className="text"> 2</div>
-            </div>
-            <div>
-              <div className="info"> Today </div>
-              <div className="text"> 0</div>
-            </div>
-          </div>
-          <div className="chartsection">
-            <div className="chartmainsection">
-              <div className="label0">
-                {" "}
-                <div className="label">
-                  <div
-                    className="color"
-                    style={{ backgroundColor: "rgb(255, 170, 0)" }}
-                  ></div>
-                  <div className="text"> Complete</div>
-                </div>
-                <div className="label">
-                  <div
-                    className="color"
-                    style={{ backgroundColor: "rgb(51, 102, 255)" }}
-                  ></div>
-                  <div className="text">Other</div>
-                </div>
-                <div className="label">
-                  <div
-                    className="color"
-                    style={{ backgroundColor: "rgb(0, 215, 143)" }}
-                  ></div>
-                  <div className="text"> All</div>
-                </div>
+              <div className="activeorder">
+                <div className="header">Active orders</div>
+                <Map />
               </div>
-              <div className="select">
-                <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
-                  <Select
-                    sx={{ width: 96, height: "40px" }}
-                    value={color}
-                    onChange={handleChange}
-                    inputProps={{ "aria-label": "Without label" }}
-                    defaultValue={Light}
-                  >
-                    <MenuItem value={"Light"} defaultValue>
-                      Week
-                    </MenuItem>
-                    <MenuItem value={"Dark"}>Month</MenuItem>
-                    <MenuItem value={"Cosmic"}>Year</MenuItem>
-                    <MenuItem value={"Corporate"}>All</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-            </div>
-            <div className="chart " style={{ height: "400px" }}>
-              <ChartC />
-            </div>
-          </div>
-        </div>
-        <div className="activemain">
-          <div className="simple">
-            <div className="activity">
-              <div className="text1">User Activity</div>
-              <div className="select" style={{ marginBottom: "auto" }}>
-                <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
-                  <Select
-                    sx={{ width: 96, height: "40px" }}
-                    value={color}
-                    onChange={handleChange}
-                    inputProps={{ "aria-label": "Without label" }}
-                    defaultValue={Light}
-                  >
-                    <MenuItem value={"Light"} defaultValue>
-                      Week
-                    </MenuItem>
-                    <MenuItem value={"Dark"}>Month</MenuItem>
-                    <MenuItem value={"Cosmic"}>Year</MenuItem>
-                    <MenuItem value={"Corporate"}>All</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-            </div>
-          </div>
-          <div className="simplesub">
-            <div className="innersub" style={{ textAlign: "left" }}>
-              <div className="text011">Today's Revenue</div>
-              <div className="h3">0</div>
-              <div className="progressbar"></div>
-              <div className="caption">No change since yesterday</div>
-              <div className="text011 m3">Today's Order</div>
-              <div className="h3">0</div>
-              <div className="progressbar"></div>
-              <div className="caption">No change since yesterday</div>
-              <div className="text011 m3">Today's Distance</div>
-              <div className="h3">0</div>
-              <div className="progressbar"></div>
-              <div className="caption">No change since yesterday</div>
-            </div>
-          </div>
-        </div>
-        <div className="orders">
-          <div className="header">USERS</div>
-          <div className="month">
-            <div>
-              <div className="info"> Total </div>
-              <div className="text"> 26</div>
-            </div>
-            <div>
-              <div className="info"> Last Month </div>
-              <div className="text"> 10</div>
-            </div>
-            <div>
-              <div className="info"> Last Week </div>
-              <div className="text"> 0</div>
-            </div>
-            <div>
-              <div className="info"> Today </div>
-              <div className="text"> 0</div>
-            </div>
-          </div>
-          <div className="chartsection">
-            <div className="chartmainsection">
-              <div className="label0">
-                {" "}
-                <div className="label">
-                  <div
-                    className="color"
-                    style={{ backgroundColor: "rgb(0, 215, 143)" }}
-                  ></div>
-                  <div className="text"> New Registrations</div>
+              <div className="orders">
+                <div className="header">ORDERS</div>
+                <div className="month">
+                  <div>
+                    <div className="info"> Total </div>
+                    <div className="text"> 6</div>
+                  </div>
+                  <div>
+                    <div className="info"> Last Month </div>
+                    <div className="text"> 6</div>
+                  </div>
+                  <div>
+                    <div className="info"> Last Week </div>
+                    <div className="text"> 2</div>
+                  </div>
+                  <div>
+                    <div className="info"> Today </div>
+                    <div className="text"> 0</div>
+                  </div>
+                </div>
+                <div className="chartsection">
+                  <div className="chartmainsection">
+                    <div className="label0">
+                      {" "}
+                      <div className="label">
+                        <div
+                          className="color"
+                          style={{ backgroundColor: "rgb(255, 170, 0)" }}
+                        ></div>
+                        <div className="text"> Complete</div>
+                      </div>
+                      <div className="label">
+                        <div
+                          className="color"
+                          style={{ backgroundColor: "rgb(51, 102, 255)" }}
+                        ></div>
+                        <div className="text">Other</div>
+                      </div>
+                      <div className="label">
+                        <div
+                          className="color"
+                          style={{ backgroundColor: "rgb(0, 215, 143)" }}
+                        ></div>
+                        <div className="text"> All</div>
+                      </div>
+                    </div>
+                    <div className="select">
+                      <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
+                        <Select
+                          sx={{ width: 96, height: "40px" }}
+                          value={color}
+                          onChange={handleChange}
+                          inputProps={{ "aria-label": "Without label" }}
+                          defaultValue={Light}
+                        >
+                          <MenuItem value={"Light"} defaultValue>
+                            Week
+                          </MenuItem>
+                          <MenuItem value={"Dark"}>Month</MenuItem>
+                          <MenuItem value={"Cosmic"}>Year</MenuItem>
+                          <MenuItem value={"Corporate"}>All</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </div>
+                  <div className="chart " style={{ height: "400px" }}>
+                    <ChartC />
+                  </div>
                 </div>
               </div>
-              <div className="select">
-                <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
-                  <Select
-                    sx={{ width: 96, height: "40px" }}
-                    value={color}
-                    onChange={handleChange}
-                    inputProps={{ "aria-label": "Without label" }}
-                    defaultValue={Light}
-                  >
-                    <MenuItem value={"Light"} defaultValue>
-                      Week
-                    </MenuItem>
-                    <MenuItem value={"Dark"}>Month</MenuItem>
-                    <MenuItem value={"Cosmic"}>Year</MenuItem>
-                    <MenuItem value={"Corporate"}>All</MenuItem>
-                  </Select>
-                </FormControl>
+              <div className="activemain">
+                <div className="simple">
+                  <div className="activity">
+                    <div className="text1">User Activity</div>
+                    <div className="select" style={{ marginBottom: "auto" }}>
+                      <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
+                        <Select
+                          sx={{ width: 96, height: "40px" }}
+                          value={color}
+                          onChange={handleChange}
+                          inputProps={{ "aria-label": "Without label" }}
+                          defaultValue={Light}
+                        >
+                          <MenuItem value={"Light"} defaultValue>
+                            Week
+                          </MenuItem>
+                          <MenuItem value={"Dark"}>Month</MenuItem>
+                          <MenuItem value={"Cosmic"}>Year</MenuItem>
+                          <MenuItem value={"Corporate"}>All</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </div>
+                </div>
+                <div className="simplesub">
+                  <div className="innersub" style={{ textAlign: "left" }}>
+                    <div className="text011">Today's Revenue</div>
+                    <div className="h3">0</div>
+                    <div className="progressbar"></div>
+                    <div className="caption">No change since yesterday</div>
+                    <div className="text011 m3">Today's Order</div>
+                    <div className="h3">0</div>
+                    <div className="progressbar"></div>
+                    <div className="caption">No change since yesterday</div>
+                    <div className="text011 m3">Today's Distance</div>
+                    <div className="h3">0</div>
+                    <div className="progressbar"></div>
+                    <div className="caption">No change since yesterday</div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="chart " style={{ height: "400px" }}>
-              <ChartC />
-            </div>
-          </div>
-        </div>
+              <div className="orders">
+                <div className="header">USERS</div>
+                <div className="month">
+                  <div>
+                    <div className="info"> Total </div>
+                    <div className="text"> 26</div>
+                  </div>
+                  <div>
+                    <div className="info"> Last Month </div>
+                    <div className="text"> 10</div>
+                  </div>
+                  <div>
+                    <div className="info"> Last Week </div>
+                    <div className="text"> 0</div>
+                  </div>
+                  <div>
+                    <div className="info"> Today </div>
+                    <div className="text"> 0</div>
+                  </div>
+                </div>
+                <div className="chartsection">
+                  <div className="chartmainsection">
+                    <div className="label0">
+                      {" "}
+                      <div className="label">
+                        <div
+                          className="color"
+                          style={{ backgroundColor: "rgb(0, 215, 143)" }}
+                        ></div>
+                        <div className="text"> New Registrations</div>
+                      </div>
+                    </div>
+                    <div className="select">
+                      <FormControl sx={{ m: 1, minWidth: 96, height: "40px" }}>
+                        <Select
+                          sx={{ width: 96, height: "40px" }}
+                          value={color}
+                          onChange={handleChange}
+                          inputProps={{ "aria-label": "Without label" }}
+                          defaultValue={Light}
+                        >
+                          <MenuItem value={"Light"} defaultValue>
+                            Week
+                          </MenuItem>
+                          <MenuItem value={"Dark"}>Month</MenuItem>
+                          <MenuItem value={"Cosmic"}>Year</MenuItem>
+                          <MenuItem value={"Corporate"}>All</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </div>
+                  <div className="chart " style={{ height: "400px" }}>
+                    <ChartC />
+                  </div>
+                </div>
+              </div>
+            </Box>
+          </Route>
+          <Route path="/user/add">
+            <Box
+              component="main"
+              sx={{
+                flexGrow: 1,
+                padding: " 2.25rem 2.25rem 0.75rem ",
+              }}
+            >
+              <DrawerHeader />
+              <CreateUser />
+            </Box>
+          </Route>
+        </Switch>
       </Box>
-    </Box>
+    </Router>
   );
 }
